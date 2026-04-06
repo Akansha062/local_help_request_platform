@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Provider Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  font-family: Arial;
+  background:#f4f4f4;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  max-width:400px;
+  margin:auto;
+  text-align:center;
+}
+
+h2{
+  margin-bottom:10px;
+}
+
+p{
+  margin:5px 0;
+}
+
+button{
+  margin-top:15px;
+  padding:10px;
+  background:#f4c430;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="profile"></div>
+
+<script>
+
+// SAME DATA (for now)
+var providers = [
+  {id:1, name:"Ravi Kumar", rating:4.5, price:300, phone:"9876543210", exp:"5 years"},
+  {id:2, name:"Aman Singh", rating:4.2, price:250, phone:"9123456780", exp:"3 years"},
+  {id:3, name:"Suresh", rating:4.6, price:350, phone:"9999999999", exp:"6 years"}
+];
+
+// GET ID FROM URL
+var params = new URLSearchParams(window.location.search);
+var id = params.get("id");
+
+// FIND PROVIDER
+var person = providers.find(function(p){
+  return p.id == id;
+});
+
+// SHOW DETAILS
+if(person){
+  document.getElementById("profile").innerHTML =
+    "<h2>" + person.name + "</h2>" +
+    "<p>⭐ Rating: " + person.rating + "</p>" +
+    "<p>💰 Price: ₹" + person.price + "/hr</p>" +
+    "<p>📞 Phone: " + person.phone + "</p>" +
+    "<p>🧰 Experience: " + person.exp + "</p>" +
+    "<button onclick='book()'>Book Now</button>";
+}
+else{
+  document.getElementById("profile").innerHTML = "Not found";
+}
+
+// BUTTON
+function book(){
+  alert("Booking Confirmed!");
+}
+
+</script>
+
+</body>
+</html>
+
