@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Services</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  font-family: Arial;
+  background:#f4f4f4;
+  margin:0;
+}
+
+/* HEADER */
+.header{
+  background:#1d2c33;
+  padding:15px 30px;
+  display:flex;
+  align-items:center;
+}
+
+.logo{
+  font-family: Georgia, "Times New Roman", serif;
+  font-size:24px;
+  font-weight:bold;
+  color:#f4c430;
+
+  text-shadow: 
+    1px 1px 0 #000,
+   -1px -1px 0 #000,
+    1px -1px 0 #000,
+   -1px 1px 0 #000;
+}
+
+/* CONTAINER */
+.container{
+  padding:20px;
+  max-width:900px;
+  margin:auto;
+}
+
+.subtitle{
+  text-align:center;
+  margin-bottom:20px;
+  color:#555;
+}
+
+/* GRID (2 cards per row) */
+#list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  #list{
+    grid-template-columns:1fr;
+  }
+}
+
+/* CARD */
+.card{
+  position:relative;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+  height:100%;
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:#f4c430;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+/* NAME */
+.name{
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+/* SMALL BOXES */
+.boxes{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+
+.box{
+  background:#eee;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+/* DESC */
+.desc{
+  color:#555;
+  margin-bottom:10px;
+  font-size:14px;
+}
+
+/* BUTTON */
+.btn{
+  padding:8px 12px;
+  background:#f4c430;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#d4aa00;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">UrbanTasker</div>
+</div>
+
+<div class="container">
+
+<h2 id="title"></h2>
+<p class="subtitle">Choose a trusted professional near you</p>
+
+<div id="list"></div>
+
+</div>
+
+<script>
+
+// DATA
+var services = {
+  plumber: [
+    {
+      id:1,
+      name:"Ravi Kumar",
+      rating:4.5,
+      price:300,
+      exp:"5 yrs",
+      desc:"Expert in leak fixing & pipe repair",
+      expertise:"Leak repair, Pipe fitting"
+    },
+    {
+      id:2,
+      name:"Aman Singh",
+      rating:4.2,
+      price:250,
+      exp:"3 yrs",
+      desc:"Affordable and quick plumbing solutions",
+      expertise:"Bathroom fittings, Drain cleaning"
+    }
+  ],
+  electrician: [
+    {
+      id:3,
+      name:"Suresh",
+      rating:4.6,
+      price:350,
+      exp:"6 yrs",
+      desc:"House wiring & repair specialist",
+      expertise:"Wiring, Switch repair"
+    }
+  ]
+};
+
+// GET SERVICE
+var params = new URLSearchParams(window.location.search);
+var service = params.get("service") || "plumber";
+
+// CAPITALIZE TITLE
+var titleText = service.charAt(0).toUpperCase() + service.slice(1);
+document.getElementById("title").innerText = titleText + " Services";
+
+// GET LIST
+var list = services[service];
+
+// SHOW DATA
+if(!list){
+  document.getElementById("list").innerHTML = "No services found";
+}
+else{
+
+  for(var i=0; i<list.length; i++){
+
+    var p = list[i];
+
+    var badge = "";
+    if(p.rating >= 4.5){
+      badge = "<div class='badge'>Top Rated</div>";
+    }
+
+    document.getElementById("list").innerHTML +=
+    "<div class='card'>" +
+
+      badge +
+
+      "<div class='name'>" + p.name + "</div>" +
+
+      "<div class='boxes'>" +
+        "<div class='box'>⭐ " + p.rating + "</div>" +
+        "<div class='box'>₹ " + p.price + "/hr</div>" +
+        "<div class='box'>🧰 " + p.exp + "</div>" +
+      "</div>" +
+
+      "<div class='desc'>⚙️ " + p.expertise + "</div>" +
+      "<div class='desc'>" + p.desc + "</div>" +
+
+      "<button class='btn' onclick='openProfile(" + p.id + ")'>View Details</button>" +
+
+    "</div>";
+  }
+}
+
+// NAVIGATION
+function openProfile(id){
+  window.location.href = "provider.html?id=" + id;
+}
+
+</script>
+
+</body>
+</html>
+
