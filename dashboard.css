@@ -1,0 +1,197 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f5f7fa;
+}
+
+/* HERO WITH BACKGROUND IMAGE */
+.hero {
+    height: 350px;
+
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url("https://images.unsplash.com/photo-1521790797524-b2497295b8a0");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* HEADINGS */
+.hero h1 {
+    margin: 5px;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 1px;   /* 👈 thoda stylish */
+}
+
+.second {
+    color: #ffb703;
+}
+
+/* SEARCH */
+.search-box {
+    display: flex;
+    margin-top: 20px;
+}
+
+.search-box input {
+    width: 300px;
+    padding: 12px;
+    border: none;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+}
+
+.search-box button {
+    padding: 12px;
+    border: none;
+    background: #ffb703;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    background: #fb8500;
+}
+
+/* MAIN */
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;   /* 👈 space between left & right */
+}
+
+/* LEFT MENU */
+.left {
+    width: 25%;
+    padding: 15px;
+    background: white;   /* 👈 box look */
+    border-radius: 10px;
+    height: fit-content;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+}
+
+.left button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    background: #f1f3f6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.left button:hover {
+    background: #2a9d8f;
+    color: white;
+}
+
+.left a {
+    text-decoration: none;
+}
+
+.active {
+    background: #2a9d8f;
+    color: white;
+}
+
+/* RIGHT */
+.right {
+    width: 75%;
+}
+
+/* 👇 SECTION BOX ADD KIYA (IMPORTANT) */
+.right h2, .right h3 {
+    margin-top: 0;
+}
+
+/* SERVICES */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;   /* 👈 spacing */
+}
+
+.service {
+    background: white;
+    padding: 12px 18px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.service:hover {
+    background: #2a9d8f;
+    color: white;
+    transform: translateY(-3px);  /* 👈 thoda lift effect */
+}
+
+/* REQUESTS */
+.requests {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+}
+
+.requests li {
+    margin: 8px 0;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .search-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-box input {
+        width: 90%;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+
+    .search-box button {
+        width: 50%;
+        border-radius: 20px;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .left {
+        width: 100%;
+    }
+
+    .right {
+        width: 100%;
+    }
+
+    .services {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service {
+        width: 80%;
+        text-align: center;
+    }
+}
