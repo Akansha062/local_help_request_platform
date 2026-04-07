@@ -29,6 +29,21 @@ body {
     letter-spacing: 1px;   
 }
 
+.logo{
+  font-family: Georgia, "Times New Roman", serif;
+  position:absolute;
+  top:20px;
+  left:30px;
+  font-size:28px;
+  font-weight:bold;
+  color:#f4c430;
+
+  text-shadow: 
+    1px 1px 0 #000,
+   -1px -1px 0 #000,
+    1px -1px 0 #000,
+   -1px 1px 0 #000;
+}
 .second {
     color: #ffb703;
 }
