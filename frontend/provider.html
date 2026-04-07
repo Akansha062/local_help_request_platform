@@ -102,20 +102,20 @@ if(person){
   document.getElementById("profile").innerHTML =
     "<img src='" + person.img + "' class='profile-img'>" +
     "<h2>" + person.name + "</h2>" +
-    "<div class='info'>⭐ Rating: " + person.rating + "</div>" +
-    "<div class='info'>💰 Price: ₹" + person.price + "/hr</div>" +
-    "<div class='info'>📞 Phone: " + person.phone + "</div>" +
-    "<div class='info'>🧰 Experience: " + person.exp + "</div>" +
+    "<div class='info'> Rating: " + person.rating + "</div>" +
+    "<div class='info'> Price: ₹" + person.price + "/hr</div>" +
+    "<div class='info'>Phone: " + person.phone + "</div>" +
+    "<div class='info'>Experience: " + person.exp + "</div>" +
     "<button onclick='book()'>Book Now</button>";
 }
 else{
   document.getElementById("profile").innerHTML =
-    "<div class='notfound'>❌ Provider Not Found</div>";
+    "<div class='notfound'> Provider Not Found</div>";
 }
 
 // BUTTON
 function book(){
-  alert("✅ Booking Confirmed!");
+  alert("Booking Confirmed!");
 }
 
 </script>
