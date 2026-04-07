@@ -13,20 +13,19 @@ document.addEventListener("DOMContentLoaded", function(){
         "Carpenter": "carpenter"
     };
 
-    services.forEach(function(service){
-        service.addEventListener("click", function(){
+   services.forEach(function(service){
+    service.addEventListener("click", function(){
 
-            let key = map[service.innerText];
+        let key = map[service.innerText];
 
-            // fallback if not in map
-            if(!key){
-                key = service.innerText.toLowerCase().replace(/\s+/g, "");
-            }
+        if(!key){
+            key = service.innerText.toLowerCase().replace(/\s+/g, "");
+        }
 
-            window.location.href = "../../services.html?service=" + key;
+        window.location.href = "services.html?service=" + key;
 
-        });
     });
+});
 
     let searchInput = document.querySelector(".search-box input");
 
