@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>UrbanTasker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  background-color:#1d2c33;
+}
+
+.logo{
+  font-family: Georgia, "Times New Roman", serif;
+  position:absolute;
+  top:20px;
+  left:30px;
+  font-size:28px;
+  font-weight:bold;
+  color:#f4c430;
+
+  text-shadow: 
+    1px 1px 0 #000,
+   -1px -1px 0 #000,
+    1px -1px 0 #000,
+   -1px 1px 0 #000;
+}
+.container{
+  height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  width:100%;
+}
+
+.left{
+  background:rgba(184,204,215);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  border-right:2px solid #ccc; 
+  padding:20px;
+}
+
+.left h3{
+  font-family: Georgia, "Times New Roman", serif;
+  font-size:30px;
+  margin-top:30px;
+  margin-bottom:8px;
+  font-weight: bold;
+}
+
+.left img{
+  max-width:80%;
+  height:auto;
+}
+
+.right{
+  height:100%;
+  font-family: Georgia, "Times New Roman", serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#fff;
+}
+
+.form-box{
+  margin-bottom:40px;
+  width:320px;
+  max-width:90%;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.form-box h2{
+  text-align:center;
+}
+
+input{
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+button{
+  padding:10px;
+  background:#f4c430;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#d4aa00;
+}
+
+@media(max-width:768px){
+
+  .container{
+    grid-template-columns:1fr;
+  }
+
+  .left{
+    display:none;
+  }
+
+  .right{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+  }
+
+  .form-box{
+    margin-top:150px;   
+  }
+
+  .logo{
+    font-size:20px;
+    top:10px;
+    left:15px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="logo">UrbanTasker</div>
+<div class="container">
+
+<div class="left">
+  <h3>Get Things Done. Find Trusted Local Help Anytime.</h3>
+  <img src="./assets/illust1.jpg">
+</div>
+
+
+<div class="right">
+<div class="form-box">
+
+  <h2>Login</h2>
+
+  <input type="text" id="username" placeholder="Username">
+  <input type="text" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="login()">Login</button>
+
+  <p style="text-align:center; font-size:14px;">
+    Don't have an account? 
+    <a href="register.html" style="color:#e2b222; text-decoration:none;">
+      Register
+    </a>
+  </p>
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+function login(){
+
+  var username = document.getElementById("username").value;
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+
+  if(username == "" || email == "" || password == ""){
+    alert("Please fill all fields!");
+    return;
+  }
+
+  if(username.length < 3){
+    alert("Username must be at least 3 characters!");
+    return;
+  }
+
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailPattern.test(email)){
+    alert("Please enter a valid email!");
+    return;
+  }
+
+  if(password.length < 6){
+    alert("Password must be at least 6 characters!");
+    return;
+  }
+  window.location.href = "dashboard.html";
+}
+
+</script>
+
+</body>
+</html>
+
