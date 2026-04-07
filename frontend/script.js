@@ -5,9 +5,10 @@ document.addEventListener("DOMContentLoaded", function(){
     let services = document.querySelectorAll(".service");
 
     services.forEach(function(service){
-        service.addEventListener("click", function(){
-            alert(service.innerText + " selected!");
-        });
+    service.addEventListener("click", function(){
+        window.location.href = "services.html";
+    });
+
     });
 
     // 2️⃣ SEARCH FUNCTION
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 service.style.display = "none";
             }
         });
+});
     });
 
 });
