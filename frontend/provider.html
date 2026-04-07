@@ -1,49 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Provider Details</title>
+<title>Local Help Platform</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
   font-family: Arial;
-  background: linear-gradient(to right, #eef2f3, #dfe9f3);
+  background: linear-gradient(135deg, #16b5e0, #6dd5ed);
+  min-height:100vh;
   padding:20px;
+}
+
+/* HEADING */
+h1{
+  text-align:center;
+  color:white;
+}
+
+/* HOME */
+.container{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
 }
 
 /* CARD */
 .card{
-  background:white;
-  padding:25px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  padding:15px;
   border-radius:15px;
-  max-width:380px;
-  margin:auto;
+  width:230px;
   text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  cursor:pointer;
   transition:0.3s;
+  color:white;
 }
 
 .card:hover{
   transform:translateY(-5px);
 }
 
-/* PROFILE IMAGE */
-.profile-img{
-  width:100px;
-  height:100px;
+/* IMAGE */
+img{
+  width:80px;
   border-radius:50%;
-  object-fit:cover;
-  margin-bottom:10px;
-  border:3px solid #f4c430;
 }
 
-h2{
-  margin:10px 0;
+/* TEXT SPACING */
+.card p{
+  margin:5px 0;
+  font-size:14px;
+}
+
+/* DETAILS */
+.details{
+  max-width:400px;
+  margin:auto;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  color:white;
+}
+
+.profile-img{
+  width:100px;
+  border-radius:50%;
+  margin-bottom:10px;
 }
 
 /* INFO BOX */
 .info{
-  background:#f9f9f9;
+  background: rgba(255,255,255,0.3);
   padding:10px;
   border-radius:8px;
   margin:8px 0;
@@ -51,72 +85,134 @@ h2{
 
 /* BUTTON */
 button{
-  margin-top:15px;
-  padding:12px;
-  width:100%;
-  background:#f4c430;
+  margin-top:10px;
+  padding:10px;
+  background:#2193b0;
   border:none;
-  border-radius:8px;
+  border-radius:5px;
   cursor:pointer;
-  font-size:16px;
-  transition:0.3s;
+  width:100%;
+  font-size:15px;
 }
 
 button:hover{
-  background:#e0b020;
+  background:#1b7f94;
 }
 
-/* NOT FOUND */
-.notfound{
-  text-align:center;
-  font-size:20px;
-  color:red;
+/* HIDE */
+.hidden{
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="profile"></div>
+<h1>Local Help Platform</h1>
+
+<!-- HOME -->
+<div id="home">
+  <div class="container" id="list"></div>
+</div>
+
+<!-- DETAILS -->
+<div id="details" class="hidden"></div>
 
 <script>
 
-// DATA (image added)
+// ✅ DATA
 var providers = [
-  {id:1, name:"Ravi Kumar", rating:4.5, price:300, phone:"9876543210", exp:"5 years", img:"https://i.pravatar.cc/100?img=1"},
-  {id:2, name:"Aman Singh", rating:4.2, price:250, phone:"9123456780", exp:"3 years", img:"https://i.pravatar.cc/100?img=2"},
-  {id:3, name:"Suresh", rating:4.6, price:350, phone:"9999999999", exp:"6 years", img:"https://i.pravatar.cc/100?img=3"}
+  {
+    id:1,
+    name:"Ravi Kumar",
+    rating:4.5,
+    price:300,
+    phone:"9876543210",
+    exp:"5 years",
+    img:"https://i.pravatar.cc/100?img=1"
+  },
+  {
+    id:2,
+    name:"Aman Singh",
+    rating:4.2,
+    price:250,
+    phone:"9123456780",
+    exp:"3 years",
+    img:"https://i.pravatar.cc/100?img=2"
+  },
+  {
+    id:3,
+    name:"Suresh",
+    rating:4.6,
+    price:350,
+    phone:"9999999999",
+    exp:"6 years",
+    img:"https://i.pravatar.cc/100?img=3"
+  }
 ];
 
-// GET ID FROM URL
-var params = new URLSearchParams(window.location.search);
-var id = params.get("id");
-
-// FIND PROVIDER
-var person = providers.find(function(p){
-  return p.id == id;
-});
-
-// SHOW DETAILS
-if(person){
-  document.getElementById("profile").innerHTML =
-    "<img src='" + person.img + "' class='profile-img'>" +
-    "<h2>" + person.name + "</h2>" +
-    "<div class='info'> Rating: " + person.rating + "</div>" +
-    "<div class='info'> Price: ₹" + person.price + "/hr</div>" +
-    "<div class='info'>Phone: " + person.phone + "</div>" +
-    "<div class='info'>Experience: " + person.exp + "</div>" +
-    "<button onclick='book()'>Book Now</button>";
-}
-else{
-  document.getElementById("profile").innerHTML =
-    "<div class='notfound'> Provider Not Found</div>";
+// 🔹 SHOW HOME
+function showHome(){
+  document.getElementById("home").classList.remove("hidden");
+  document.getElementById("details").classList.add("hidden");
 }
 
-// BUTTON
+// 🔹 SHOW DETAILS
+function showDetails(id){
+
+  var person = providers.find(function(p){
+    return p.id == id;
+  });
+
+  var box = document.getElementById("details");
+
+  if(person){
+    box.innerHTML =
+      "<div class='details'>" +
+
+      "<img src='"+person.img+"' class='profile-img'>" +
+      "<h2>"+person.name+"</h2>" +
+
+      "<div class='info'>⭐ Rating: "+person.rating+"</div>" +
+      "<div class='info'>💰 Price: ₹"+person.price+" per hour</div>" +
+      "<div class='info'>📞 Phone: "+person.phone+"</div>" +
+      "<div class='info'>🧰 Experience: "+person.exp+"</div>" +
+
+      "<button onclick='book()'>Book Now</button>" +
+      "<button onclick='showHome()'>⬅ Back</button>" +
+
+      "</div>";
+  }
+  else{
+    box.innerHTML = "<h2>❌ No Data Found</h2>";
+  }
+
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("details").classList.remove("hidden");
+}
+
+// 🔹 BOOK
 function book(){
-  alert("Booking Confirmed!");
+  alert("✅ Booking Confirmed!");
 }
+
+// 🔹 LOAD HOME LIST (FULL DETAILS SHOW)
+var list = document.getElementById("list");
+
+providers.forEach(function(p){
+  list.innerHTML +=
+    "<div class='card' onclick='showDetails("+p.id+")'>" +
+
+    "<img src='"+p.img+"'>" +
+    "<h3>"+p.name+"</h3>" +
+
+    "<p> Rating: "+p.rating+"</p>" +
+    "<p>Price: ₹"+p.price+"/hr</p>" +
+    "<p>📞 "+p.phone+"</p>" +
+    "<p>🧰 "+p.exp+"</p>" +
+
+    "</div>";
+});
 
 </script>
 
