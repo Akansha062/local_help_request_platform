@@ -113,11 +113,6 @@ body {
     text-decoration: none;
 }
 
-.active {
-    background: #2a9d8f;
-    color: white;
-}
-
 /* RIGHT */
 .right {
     width: 75%;
