@@ -143,31 +143,28 @@ button:hover{
 
   <div class="right">
     <div class="form-box">
+      <h2>Register</h2>
+      <input type="text" id="name" placeholder="Full Name">
+      <input type="text" id="username" placeholder="Username">
+      <input type="email" id="email" placeholder="Email">
+      <input type="text" id="mobile" placeholder="Mobile">
+      <input type="password" id="password" placeholder="Password">
 
-  <h2>Register</h2>
+      <button onclick="register()">Register</button>
 
-  <input type="text" id="name" placeholder="Full Name">
-  <input type="text" id="username" placeholder="Username">
-  <input type="email" id="email" placeholder="Email">
-  <input type="text" id="mobile" placeholder="Mobile">
-  <input type="password" id="password" placeholder="Password">
-
-  <button onclick="register()">Register</button>
-
-  <p style="text-align:center; font-size:14px;">
-    Already have an account? 
-    <a href="../index.html" style="color:#e2b222; text-decoration:none;">
-      Login
-    </a>
-  </p>
-</div>
+      <p style="text-align:center; font-size:14px;">
+            Already have an account? 
+      <a href="../index.html" style="color:#e2b222; text-decoration:none;">
+          Login
+      </a>
+      </p>
+    </div>
   </div>
 
 </div>
 
 <script>
 function register(){
-
   var name = document.getElementById("name").value;
   var username = document.getElementById("username").value;
   var email = document.getElementById("email").value;
@@ -200,10 +197,8 @@ function register(){
     return;
   }
 
-  // redirect to login
   window.location.href = "../index.html";
 }
 </script>
-
 </body>
 </html>
