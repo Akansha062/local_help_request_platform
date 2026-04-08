@@ -6,15 +6,8 @@ body {
 
 .hero {
     height: 350px;
-
     background:#1d2c33;
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
     color: white;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
