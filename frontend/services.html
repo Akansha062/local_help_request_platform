@@ -1,213 +1,254 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>UrbanTasker</title>
+<title>UrbanTasker - Providers</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  font-family: Arial;
-  background:#f4f4f4;
+*{
   margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
 }
-  
-.header{
+
+body{
   background:#1d2c33;
-  padding:15px 30px;
-  display:flex;
-  align-items:center;
 }
 
 .logo{
-  font-family: Georgia, "Times New Roman", serif;
-  font-size:24px;
+  position:absolute;
+  top:20px;
+  left:30px;
+  font-size:26px;
   font-weight:bold;
   color:#f4c430;
-
-  text-shadow: 
-    1px 1px 0 #000,
-   -1px -1px 0 #000,
-    1px -1px 0 #000,
-   -1px 1px 0 #000;
+  font-family: Georgia, serif;
 }
-  
+
 .container{
-  padding:20px;
-  max-width:900px;
+  padding-top:100px;
+  width:90%;
+  max-width:1000px;
   margin:auto;
 }
 
-.subtitle{
+h1{
   text-align:center;
-  margin-bottom:20px;
-  color:#555;
+  color:white;
+  margin-bottom:30px;
 }
 
-#list{
+.grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:15px;
 }
-
-@media(max-width:600px){
-  #list{
-    grid-template-columns:1fr;
-  }
-}
-
+  
 .card{
-  position:relative;
   background:white;
   padding:20px;
-  border-radius:12px;
-  box-shadow:0 3px 10px rgba(0,0,0,0.1);
-  height:100%;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:0.3s;
 }
 
-.badge{
-  position:absolute;
-  top:15px;
-  right:15px;
-  background:#f4c430;
-  padding:5px 10px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:bold;
+.card:hover{
+  transform:scale(1.03);
+}
+
+.left{
+  max-width:70%;
 }
 
 .name{
   font-size:18px;
   font-weight:bold;
-  margin-bottom:10px;
 }
 
-.boxes{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:10px;
+.rating{
+  color:#f4c430;
+  margin-top:5px;
 }
 
-.box{
-  background:#eee;
-  padding:5px 10px;
-  border-radius:20px;
-  font-size:12px;
-}
-
-.desc{
-  color:#555;
-  margin-bottom:10px;
+.price{
   font-size:14px;
+  color:gray;
+  margin-top:5px;
 }
 
-.btn{
+.expertise{
+  font-size:13px;
+  color:#555;
+  margin-top:5px;
+}
+
+.right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:10px;
+}
+
+.badge{
+  font-size:12px;
+  background:#e8f5e9;
+  color:#2e7d32;
+  padding:3px 8px;
+  border-radius:5px;
+}
+
+button{
   padding:8px 12px;
   background:#f4c430;
   border:none;
-  border-radius:6px;
+  border-radius:5px;
   cursor:pointer;
 }
 
-.btn:hover{
+button:hover{
   background:#d4aa00;
 }
 
+.no-data{
+  color:white;
+  text-align:center;
+}
+
+@media(max-width:768px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+  .card{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .right{
+    width:100%;
+    align-items:flex-start;
+  }
+  .logo{
+    font-size:20px;
+    left:15px;
+  }
+}
 </style>
 </head>
 
 <body>
-
-<div class="header">
-   <div class="logo">UrbanTasker</div>
-</div>
-
+<div class="logo">UrbanTasker</div>
 <div class="container">
-    <h2 id="title"></h2>
-    <p class="subtitle">Choose a trusted professional near you</p>
-<div id="list"></div>
+  <h1 id="title">Service Providers</h1>
+  <div id="list" class="grid"></div>
 </div>
+
 <script>
+var url = window.location.search;
+var service = url.split("=")[1];
 
-var services = {
-  plumber: [
-    {
-      id:1,
-      name:"Ravi Kumar",
-      rating:4.5,
-      price:300,
-      exp:"5 yrs",
-      desc:"Expert in leak fixing & pipe repair",
-      expertise:"Leak repair, Pipe fitting"
-    },
-    {
-      id:2,
-      name:"Aman Singh",
-      rating:4.2,
-      price:250,
-      exp:"3 yrs",
-      desc:"Affordable and quick plumbing solutions",
-      expertise:"Bathroom fittings, Drain cleaning"
-    }
-  ],
-  electrician: [
-    {
-      id:3,
-      name:"Suresh",
-      rating:4.6,
-      price:350,
-      exp:"6 yrs",
-      desc:"House wiring & repair specialist",
-      expertise:"Wiring, Switch repair"
-    }
-  ]
-};
+//sample data since backend isnt connected yet
+var plumbers = [
+  {
+    name:"AquaFix Services Pvt Ltd",
+    rating:"⭐ 4.6",
+    price:"₹350/hr",
+    expertise:"Full plumbing solutions"
+  },
+  {
+    name:"Ramesh Kumar",
+    rating:"⭐ 4.5",
+    price:"₹300/hr",
+    expertise:"Leak repair, pipe fitting"
+  },
+  {
+    name:"Suresh Yadav",
+    rating:"⭐ 4.2",
+    price:"₹250/hr",
+    expertise:"Bathroom fittings"
+  },
+  {
+    name:"Imran Ali",
+    rating:"⭐ 4.3",
+    price:"₹280/hr",
+    expertise:"Tap & pipe repair"
+  }
+];
 
-var params = new URLSearchParams(window.location.search);
-var service = params.get("service") || "plumber";
-var titleText = service.charAt(0).toUpperCase() + service.slice(1);
-document.getElementById("title").innerText = titleText + " Services";
-  
-var list = services[service];
-if(!list){
-  document.getElementById("list").innerHTML = "No services found";
+var electricians = [
+  {
+    name:"PowerFix Electricals Ltd",
+    rating:"⭐ 4.7",
+    price:"₹450/hr",
+    expertise:"Complete electrical work"
+  },
+  {
+    name:"Amit Sharma",
+    rating:"⭐ 4.6",
+    price:"₹400/hr",
+    expertise:"Wiring, switch repair"
+  },
+  {
+    name:"Rahul Verma",
+    rating:"⭐ 4.3",
+    price:"₹300/hr",
+    expertise:"Fan & light install"
+  },
+  {
+    name:"Faizan Khan",
+    rating:"⭐ 4.2",
+    price:"₹280/hr",
+    expertise:"Maintenance work"
+  }
+];
+
+var selectedList = [];
+if(service == "plumber"){
+  selectedList = plumbers;
+  document.getElementById("title").innerText = "Plumber Services";
+}
+else if(service == "electrician"){
+  selectedList = electricians;
+  document.getElementById("title").innerText = "Electrician Services";
+}
+
+var listDiv = document.getElementById("list");
+if(selectedList.length == 0){
+  listDiv.innerHTML = "<p class='no-data'>No providers found</p>";
 }
 else{
-   for(var i=0; i<list.length; i++){
-    var p = list[i];
-    var badge = "";
-    if(p.rating >= 4.5){
-      badge = "<div class='badge'>Top Rated</div>";
-    }
+  for(var i=0; i<selectedList.length; i++)
+  {
+    var p = selectedList[i];
+    listDiv.innerHTML += `
+      <div class="card">
+        
+        <div class="left">
+          <div class="name">${p.name}</div>
+          <div class="rating">${p.rating}</div>
+          <div class="price">${p.price}</div>
+          <div class="expertise">${p.expertise}</div>
+        </div>
 
-    document.getElementById("list").innerHTML +=
-    "<div class='card'>" +
+        <div class="right">
+          <div class="badge">Verified</div>
+          <button onclick="viewDetails('${p.name}')">
+            View Details
+          </button>
+        </div>
 
-      badge +
-
-      "<div class='name'>" + p.name + "</div>" +
-
-      "<div class='boxes'>" +
-        "<div class='box'>⭐ " + p.rating + "</div>" +
-        "<div class='box'>₹ " + p.price + "/hr</div>" +
-        "<div class='box'>🧰 " + p.exp + "</div>" +
-      "</div>" +
-
-      "<div class='desc'>⚙️ " + p.expertise + "</div>" +
-      "<div class='desc'>" + p.desc + "</div>" +
-
-      "<button class='btn' onclick='openProfile(" + p.id + ")'>View Details</button>" +
-
-    "</div>";
+      </div>
+    `;
   }
 }
 
-function openProfile(id){
-  window.location.href = "provider.html?id=" + id;
+function viewDetails(name){
+  window.location.href =
+    "provider.html?name=" + name + "&service=" + service;
 }
-
 </script>
 </body>
 </html>
-
