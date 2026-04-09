@@ -1,83 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Provider Details</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body{
-    margin:0;
-    font-family: Arial;
-    background: linear-gradient(135deg, #0f2027, #203a43);
-    color:white;
-}
-
-.header{
-    padding:20px;
-    font-size:24px;
-    font-weight:bold;
-    color:#ffcc00;
-}
-
-.container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px;
-}
-
-.card{
-    background:white;
-    color:black;
-    width:400px;
-    border-radius:12px;
-    padding:25px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
-}
-
-.name{
-    font-size:22px;
-    font-weight:bold;
-}
-
-.details p{
-    margin:8px 0;
-}
-
-.btn{
-    width:100%;
-    padding:12px;
-    background:#ffcc00;
-    border:none;
-    border-radius:8px;
-    font-weight:bold;
-    margin-top:20px;
-    cursor:pointer;
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">UrbanTasker</div>
-
-<div class="container">
-    <div class="card">
-
-        <div class="name" id="name"></div>
-
-        <div class="details">
-            <p><b>Service:</b> Electrician</p>
-            <p><b>Description:</b> <span id="desc"></span></p>
-            <p><b>Phone:</b> <span id="phone"></span></p>
-            <p><b>Experience:</b> 5 Years</p>
-        </div>
-
-        <button class="btn" onclick="bookNow()">Book Now</button>
-
-    </div>
-</div>
-
 <script>
 
 let params = new URLSearchParams(window.location.search);
@@ -85,43 +5,39 @@ let name = params.get("name");
 
 document.getElementById("name").innerText = name;
 
-// 🔥 AUTO DATA BASED ON NAME (since services page not passing data)
+// ✅ DIRECT DESCRIPTION + PHONE (NO null issue)
 
 let desc = "";
 let phone = "";
 
-// MATCHING DATA
+// DIFFERENT DATA
 if(name === "PowerFix Electricals Ltd"){
-    desc = "Complete electrical work | Reliable service | Fast response";
+    desc = "Complete electrical work with expert technicians. Fast and reliable service for homes and offices.";
     phone = "9123456780";
 }
 else if(name === "Amit Sharma"){
-    desc = "Wiring, switch repair | Quick service | Affordable";
+    desc = "Specialist in wiring and switch repair. Quick service with affordable pricing.";
     phone = "9876543210";
 }
 else if(name === "Rahul Verma"){
-    desc = "Fan & light install | Experienced | Trusted service";
+    desc = "Fan and light installation expert. Experienced and trusted professional.";
     phone = "9012345678";
 }
 else if(name === "Faizan Khan"){
-    desc = "Maintenance work | Skilled technician | Fast support";
+    desc = "Maintenance and repair work. Skilled technician with fast response time.";
     phone = "8899001122";
 }
 else{
-    desc = "Professional electrician service";
+    desc = "Professional electrician service available.";
     phone = "9000000000";
 }
 
-// SET DATA
+// SET VALUES
 document.getElementById("desc").innerText = desc;
 document.getElementById("phone").innerText = phone;
 
-// BUTTON
 function bookNow(){
     alert("Booking Confirmed ✅");
 }
 
 </script>
-
-</body>
-</html>
