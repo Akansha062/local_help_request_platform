@@ -1,60 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Provider Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #0f2027, #203a43);
+    color:white;
+}
+
+.header{
+    padding:20px;
+    font-size:24px;
+    font-weight:bold;
+    color:#ffcc00;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.card{
+    background:white;
+    color:black;
+    width:400px;
+    border-radius:12px;
+    padding:25px;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    background:#ffcc00;
+    border:none;
+    border-radius:8px;
+    margin-top:20px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">UrbanTasker</div>
+
+<div class="container">
+    <div class="card">
+
+        <h2 id="name"></h2>
+
+        <p><b>Service:</b> <span id="service"></span></p>
+        <p><b>Description:</b> <span id="desc"></span></p>
+        <p><b>Phone:</b> <span id="phone"></span></p>
+        <p><b>Experience:</b> 5 Years</p>
+
+        <button class="btn" onclick="bookNow()">Book Now</button>
+
+    </div>
+</div>
+
 <script>
+
+try {
 
 let params = new URLSearchParams(window.location.search);
 
 let name = params.get("name");
-let service = params.get("service"); // 👈 important
+let service = params.get("service");
 
-document.getElementById("name").innerText = name;
+// SET BASIC
+document.getElementById("name").innerText = name || "Provider";
+document.getElementById("service").innerText = service || "Service";
 
-// VARIABLES
+// DATA
 let desc = "";
 let phone = "";
 
-// 🔥 ELECTRICIAN DATA
+// ELECTRICIAN
 if(service === "electrician"){
 
     if(name === "PowerFix Electricals Ltd"){
-        desc = "Complete electrical work with expert technicians. Fast and reliable service.";
+        desc = "Complete electrical work with expert technicians.";
         phone = "9123456780";
     }
     else if(name === "Amit Sharma"){
-        desc = "Wiring and switch repair specialist. Affordable and quick service.";
+        desc = "Wiring and switch repair specialist.";
         phone = "9876543210";
     }
     else if(name === "Rahul Verma"){
-        desc = "Fan and light installation expert. Experienced and trusted.";
+        desc = "Fan and light installation expert.";
         phone = "9012345678";
     }
     else if(name === "Faizan Khan"){
-        desc = "Maintenance and repair work. Skilled technician.";
+        desc = "Maintenance and repair work.";
         phone = "8899001122";
     }
 }
 
-// 🔥 PLUMBER DATA
+// PLUMBER
 else if(service === "plumber"){
 
     if(name === "AquaFix Services Pvt Ltd"){
-        desc = "Complete plumbing solutions including pipe repair and installation.";
+        desc = "Full plumbing solutions.";
         phone = "9111222233";
     }
     else if(name === "Ramesh Kumar"){
-        desc = "Leak repair and pipe fitting expert. Fast and reliable service.";
+        desc = "Leak repair and pipe fitting.";
         phone = "9222333444";
     }
     else if(name === "Suresh Yadav"){
-        desc = "Bathroom fittings specialist. Experienced plumber.";
+        desc = "Bathroom fittings specialist.";
         phone = "9333444555";
     }
     else if(name === "Imran Ali"){
-        desc = "Tap and pipe repair expert. Quick service available.";
+        desc = "Tap and pipe repair expert.";
         phone = "9444555666";
     }
 }
 
-// DEFAULT (safety)
-else{
+// DEFAULT
+if(desc === ""){
     desc = "Professional service provider.";
     phone = "9000000000";
 }
@@ -63,8 +134,16 @@ else{
 document.getElementById("desc").innerText = desc;
 document.getElementById("phone").innerText = phone;
 
+} catch(error){
+    console.log("Error:", error);
+}
+
+// BUTTON
 function bookNow(){
     alert("Booking Confirmed ✅");
 }
 
 </script>
+
+</body>
+</html>
