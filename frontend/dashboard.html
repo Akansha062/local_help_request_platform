@@ -1,13 +1,155 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UrbanTasker</title>
-    <link rel="stylesheet" href="dashboard.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrbanTasker</title>
+
+<style>
+
+/* BODY */
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1d4350, #a43931);
+    color:white;
+}
+
+/* LOGO */
+.logo{
+    position:absolute;
+    top:20px;
+    left:30px;
+    font-size:28px;
+    font-weight:bold;
+    color:#ffcc00;
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:80px 20px 40px;
+}
+
+.hero h1{
+    margin:5px;
+    font-size:38px;
+}
+
+.second{
+    color:#ffcc00;
+}
+
+/* SEARCH */
+.search-box{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.search-box input{
+    padding:12px;
+    width:260px;
+    border:none;
+    border-radius:25px 0 0 25px;
+    outline:none;
+}
+
+.search-box button{
+    padding:12px 20px;
+    border:none;
+    background:#ffcc00;
+    border-radius:0 25px 25px 0;
+    cursor:pointer;
+}
+
+/* MAIN */
+.container{
+    display:flex;
+    gap:20px;
+    padding:20px;
+}
+
+/* LEFT */
+.left{
+    width:25%;
+    background: rgba(255,255,255,0.1);
+    padding:15px;
+    border-radius:12px;
+}
+
+.left button{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    background:white;
+    cursor:pointer;
+}
+
+/* RIGHT */
+.right{
+    width:75%;
+}
+
+/* BOX */
+.box{
+    background: rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+/* SERVICES */
+.services{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.service{
+    background:white;
+    color:black;
+    padding:10px 18px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.service:hover{
+    background:#ffcc00;
+    transform:scale(1.1);
+}
+
+/* REQUESTS */
+.requests{
+    background:white;
+    color:black;
+    padding:15px;
+    border-radius:10px;
+}
+
+.requests li{
+    margin:8px 0;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .container{
+        flex-direction:column;
+    }
+    .left, .right{
+        width:100%;
+    }
+}
+
+</style>
 </head>
 
 <body>
+
 <div class="logo">UrbanTasker</div>
+
 <!-- HERO -->
 <div class="hero">
     <h1>Book Trusted Help</h1>
@@ -23,16 +165,16 @@
 
     <!-- LEFT -->
     <div class="left">
-        <a href="#"><button>Home</button></a>
-        <a href="#"><button>My Requests</button></a>
-        <a href="create.html"><button>Create Request</button></a>
-        <a href="#"><button>Logout</button></a>
+        <button>Home</button>
+        <button>My Requests</button>
+        <button onclick="location.href='create.html'">Create Request</button>
+        <button>Logout</button>
     </div>
 
     <!-- RIGHT -->
     <div class="right">
 
-        <!-- SERVICES BOX -->
+        <!-- SERVICES -->
         <div class="box">
             <h2>Popular Services</h2>
 
@@ -48,7 +190,7 @@
             </div>
         </div>
 
-        <!-- REQUEST BOX -->
+        <!-- REQUESTS -->
         <div class="box">
             <h3>Recent Requests</h3>
 
@@ -62,7 +204,54 @@
     </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+
+// SERVICE CLICK
+let services = document.querySelectorAll(".service");
+
+let map = {
+    "Electrician": "electrician",
+    "Plumber": "plumber",
+    "Painter": "painter",
+    "Wall Repair": "wallrepair",
+    "Home Cleaning": "homecleaning",
+    "Pest Control": "pestcontrol",
+    "Appliance Repair": "appliancerepair",
+    "Carpenter": "carpenter"
+};
+
+services.forEach(function(service){
+    service.addEventListener("click", function(){
+
+        let key = map[service.innerText];
+
+        if(!key){
+            key = service.innerText.toLowerCase().replace(/\s+/g, "");
+        }
+
+        window.location.href = "services.html?service=" + key;
+
+    });
+});
+
+// SEARCH
+let searchInput = document.querySelector(".search-box input");
+
+searchInput.addEventListener("keyup", function(){
+    let value = searchInput.value.toLowerCase();
+
+    services.forEach(function(service){
+        let text = service.innerText.toLowerCase();
+
+        if(text.includes(value)){
+            service.style.display = "block";
+        } else {
+            service.style.display = "none";
+        }
+    });
+});
+
+</script>
 
 </body>
 </html>
