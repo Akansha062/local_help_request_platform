@@ -81,38 +81,42 @@ body{
 <script>
 
 let params = new URLSearchParams(window.location.search);
-
 let name = params.get("name");
-let desc = params.get("desc");
 
 document.getElementById("name").innerText = name;
 
-// 🔥 ADDING EXTRA LINES IN DESCRIPTION
-document.getElementById("desc").innerText =
-desc + " | Reliable service | Fast response | Affordable pricing";
+// 🔥 AUTO DATA BASED ON NAME (since services page not passing data)
 
-// 🔥 DIFFERENT PHONE NUMBERS LOGIC
-let phoneNumber = "";
+let desc = "";
+let phone = "";
 
+// MATCHING DATA
 if(name === "PowerFix Electricals Ltd"){
-    phoneNumber = "9123456780";
+    desc = "Complete electrical work | Reliable service | Fast response";
+    phone = "9123456780";
 }
 else if(name === "Amit Sharma"){
-    phoneNumber = "9876543210";
+    desc = "Wiring, switch repair | Quick service | Affordable";
+    phone = "9876543210";
 }
 else if(name === "Rahul Verma"){
-    phoneNumber = "9012345678";
+    desc = "Fan & light install | Experienced | Trusted service";
+    phone = "9012345678";
 }
 else if(name === "Faizan Khan"){
-    phoneNumber = "8899001122";
+    desc = "Maintenance work | Skilled technician | Fast support";
+    phone = "8899001122";
 }
 else{
-    phoneNumber = "9000000000";
+    desc = "Professional electrician service";
+    phone = "9000000000";
 }
 
-document.getElementById("phone").innerText = phoneNumber;
+// SET DATA
+document.getElementById("desc").innerText = desc;
+document.getElementById("phone").innerText = phone;
 
-// BOOK BUTTON
+// BUTTON
 function bookNow(){
     alert("Booking Confirmed ✅");
 }
