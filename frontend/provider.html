@@ -68,7 +68,6 @@ body{
 
         <div class="details">
             <p><b>Service:</b> Electrician</p>
-            <p><b>Price:</b> ₹<span id="price"></span></p>
             <p><b>Description:</b> <span id="desc"></span></p>
             <p><b>Phone:</b> <span id="phone"></span></p>
             <p><b>Experience:</b> 5 Years</p>
@@ -80,16 +79,44 @@ body{
 </div>
 
 <script>
+
 let params = new URLSearchParams(window.location.search);
 
-document.getElementById("name").innerText = params.get("name");
-document.getElementById("price").innerText = params.get("price");
-document.getElementById("desc").innerText = params.get("desc");
-document.getElementById("phone").innerText = params.get("phone");
+let name = params.get("name");
+let desc = params.get("desc");
 
+document.getElementById("name").innerText = name;
+
+// 🔥 ADDING EXTRA LINES IN DESCRIPTION
+document.getElementById("desc").innerText =
+desc + " | Reliable service | Fast response | Affordable pricing";
+
+// 🔥 DIFFERENT PHONE NUMBERS LOGIC
+let phoneNumber = "";
+
+if(name === "PowerFix Electricals Ltd"){
+    phoneNumber = "9123456780";
+}
+else if(name === "Amit Sharma"){
+    phoneNumber = "9876543210";
+}
+else if(name === "Rahul Verma"){
+    phoneNumber = "9012345678";
+}
+else if(name === "Faizan Khan"){
+    phoneNumber = "8899001122";
+}
+else{
+    phoneNumber = "9000000000";
+}
+
+document.getElementById("phone").innerText = phoneNumber;
+
+// BOOK BUTTON
 function bookNow(){
     alert("Booking Confirmed ✅");
 }
+
 </script>
 
 </body>
