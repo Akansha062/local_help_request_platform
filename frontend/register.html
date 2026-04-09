@@ -191,7 +191,12 @@ function register(){
     alert("Password must be at least 6 characters!");
     return;
   }
-
+  
+  var mobilePattern = /^[0-9]{10}$/;
+  if(!mobilePattern.test(mobile)){
+  alert("Enter valid 10-digit mobile number!");
+  return;
+  }
   if(mobile.length != 10){
     alert("Enter valid 10-digit mobile!");
     return;
