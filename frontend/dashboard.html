@@ -100,7 +100,7 @@ body{
     margin-bottom:20px;
 }
 
-/* SERVICES */
+/* SERVICES TEXT BUTTONS */
 .services{
     display:flex;
     flex-wrap:wrap;
@@ -119,6 +119,49 @@ body{
 .service:hover{
     background:#ffcc00;
     transform:scale(1.1);
+}
+
+/* IMAGE SERVICES (TaskRabbit style) */
+.image-services{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:20px;
+}
+
+.img-card{
+    width:200px;
+    height:130px;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+}
+
+.img-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+.img-card p{
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    color:white;
+    font-weight:bold;
+    background: rgba(0,0,0,0.5);
+    padding:5px 10px;
+    border-radius:8px;
+}
+
+.img-card:hover img{
+    transform:scale(1.2);
+}
+
+.img-card:hover{
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
 /* REQUESTS */
@@ -188,6 +231,15 @@ body{
                 <div class="service">Appliance Repair</div>
                 <div class="service">Carpenter</div>
             </div>
+
+            <!-- 🔥 IMAGE CARDS -->
+            <div class="image-services">
+                <div class="img-card"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952"><p>Electrician</p></div>
+                <div class="img-card"><img src="https://images.unsplash.com/photo-1600566752227-8f4a9d4c2c6e"><p>Plumber</p></div>
+                <div class="img-card"><img src="https://images.unsplash.com/photo-1581574208077-5c9cfd6b8d4d"><p>Cleaning</p></div>
+                <div class="img-card"><img src="https://images.unsplash.com/photo-1581091215367-59ab6b5c8a8b"><p>Carpenter</p></div>
+            </div>
+
         </div>
 
         <!-- REQUESTS -->
@@ -206,7 +258,7 @@ body{
 
 <script>
 
-// SERVICE CLICK
+// SERVICE CLICK (TEXT BUTTONS)
 let services = document.querySelectorAll(".service");
 
 let map = {
@@ -222,15 +274,16 @@ let map = {
 
 services.forEach(function(service){
     service.addEventListener("click", function(){
-
-        let key = map[service.innerText];
-
-        if(!key){
-            key = service.innerText.toLowerCase().replace(/\s+/g, "");
-        }
-
+        let key = map[service.innerText] || service.innerText.toLowerCase().replace(/\s+/g, "");
         window.location.href = "services.html?service=" + key;
+    });
+});
 
+// IMAGE CARD CLICK 🔥
+document.querySelectorAll(".img-card").forEach(card=>{
+    card.addEventListener("click", function(){
+        let service = this.innerText.toLowerCase().replace(/\s+/g, "");
+        window.location.href = "services.html?service=" + service;
     });
 });
 
@@ -242,12 +295,7 @@ searchInput.addEventListener("keyup", function(){
 
     services.forEach(function(service){
         let text = service.innerText.toLowerCase();
-
-        if(text.includes(value)){
-            service.style.display = "block";
-        } else {
-            service.style.display = "none";
-        }
+        service.style.display = text.includes(value) ? "block" : "none";
     });
 });
 
