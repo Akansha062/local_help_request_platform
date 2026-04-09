@@ -12,13 +12,16 @@ body{
     background:#f5f7fa;
 }
 
-/* HEADER */
-.header{
-    padding:20px;
-    font-size:24px;
-    font-weight:bold;
-    color:#004d40;
-    background:white;
+/* LOGO */
+.logo{
+  font-family: Georgia, "Times New Roman", serif;
+  position:absolute;
+  top:20px;
+  left:30px;
+  font-size:28px;
+  font-weight:bold;
+  color:#f4c430;
+  text-shadow: 1px 1px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000;
 }
 
 /* HERO */
@@ -72,12 +75,20 @@ body{
 
 .sidebar button{
     width:100%;
-    padding:10px;
+    padding:12px;
     margin:10px 0;
     border:none;
     background:white;
     border-radius:8px;
     cursor:pointer;
+    transition:0.3s;
+}
+
+/* 🔥 HOVER FIX */
+.sidebar button:hover{
+    background:#004d40;
+    color:white;
+    transform:translateX(5px);
 }
 
 /* RIGHT */
@@ -115,7 +126,7 @@ body{
     transform:scale(1.05);
 }
 
-/* SUPPORT SECTION */
+/* SUPPORT */
 .support{
     margin-top:30px;
     background:white;
@@ -123,12 +134,13 @@ body{
     border-radius:10px;
 }
 
-.support h3{
-    margin-top:0;
-}
-
-.support p{
-    margin:8px 0;
+/* FOOTER */
+.footer{
+    margin-top:30px;
+    background:#004d40;
+    color:white;
+    text-align:center;
+    padding:20px;
 }
 
 /* MOBILE */
@@ -146,14 +158,14 @@ body{
 
 <body>
 
-<div class="header">UrbanTasker</div>
+<div class="logo">UrbanTasker</div>
 
 <div class="hero">
     <h1>Book Trusted Help</h1>
     <h1 class="second">For Your Daily Needs</h1>
 
     <div class="search-box">
-        <input type="text" placeholder="Search service">
+        <input type="text" id="search" placeholder="Search service">
         <button>Search</button>
     </div>
 </div>
@@ -176,32 +188,27 @@ body{
         <div class="cards">
 
             <div class="card"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e"><h3>Electrician</h3></div>
-
             <div class="card"><img src="https://images.unsplash.com/photo-1581244276894-0f79998188bc"><h3>Plumber</h3></div>
-
             <div class="card"><img src="https://images.unsplash.com/photo-1581574208077-5c9cfd6b8d4d"><h3>Home Cleaning</h3></div>
-
             <div class="card"><img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88"><h3>Carpenter</h3></div>
-
             <div class="card"><img src="https://images.unsplash.com/photo-1597007066704-67bf2068d5b2"><h3>Painter</h3></div>
-
             <div class="card"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"><h3>Wall Repair</h3></div>
-
             <div class="card"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952"><h3>Pest Control</h3></div>
-
             <div class="card"><img src="https://images.unsplash.com/photo-1581091215367-59ab6b5c8a8b"><h3>Appliance Repair</h3></div>
 
         </div>
 
-        <!-- 🔥 SUPPORT SECTION -->
         <div class="support">
             <h3>Need Help?</h3>
-            <p>📞 Call us: 9876543210</p>
-            <p>📧 Email: support@urbantasker.com</p>
-            <p>⏰ Available: 9 AM – 9 PM</p>
+            <p>📞 9876543210</p>
+            <p>📧 support@urbantasker.com</p>
         </div>
 
     </div>
+</div>
+
+<div class="footer">
+    <p>© 2026 UrbanTasker | All Rights Reserved</p>
 </div>
 
 <script>
@@ -211,6 +218,18 @@ document.querySelectorAll(".card").forEach(card=>{
     card.addEventListener("click", function(){
         let service = this.innerText.toLowerCase().replace(/\s+/g,"");
         window.location.href = "services.html?service=" + service;
+    });
+});
+
+// SEARCH
+let search = document.getElementById("search");
+
+search.addEventListener("keyup", function(){
+    let value = search.value.toLowerCase();
+
+    document.querySelectorAll(".card").forEach(card=>{
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(value) ? "block" : "none";
     });
 });
 
