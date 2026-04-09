@@ -1,218 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>UrbanTasker</title>
+<title>Provider Details</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+
 body{
-  font-family: Arial;
-  background: linear-gradient(135deg, #16b5e0, #6dd5ed);
-  min-height:100vh;
-  padding:20px;
+    margin:0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #0f2027, #203a43);
+    color:white;
 }
 
-/* HEADING */
-h1{
-  text-align:center;
-  color:white;
+.header{
+    padding:20px;
+    font-size:24px;
+    font-weight:bold;
+    color:#ffcc00;
 }
 
-/* HOME */
 .container{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
 }
 
-/* CARD */
 .card{
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(10px);
-  padding:15px;
-  border-radius:15px;
-  width:230px;
-  text-align:center;
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
-  cursor:pointer;
-  transition:0.3s;
-  color:white;
+    background:white;
+    color:black;
+    width:400px;
+    border-radius:12px;
+    padding:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
-.card:hover{
-  transform:translateY(-5px);
+.name{
+    font-size:22px;
+    font-weight:bold;
 }
 
-/* IMAGE */
-img{
-  width:80px;
-  border-radius:50%;
+.rating{
+    color:orange;
+    margin:5px 0;
 }
 
-/* TEXT SPACING */
-.card p{
-  margin:5px 0;
-  font-size:14px;
+.details p{
+    margin:8px 0;
 }
 
-/* DETAILS */
-.details{
-  max-width:400px;
-  margin:auto;
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(10px);
-  padding:25px;
-  border-radius:15px;
-  text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
-  color:white;
+.btn{
+    width:100%;
+    padding:12px;
+    background:#ffcc00;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    margin-top:20px;
+    cursor:pointer;
 }
 
-.profile-img{
-  width:100px;
-  border-radius:50%;
-  margin-bottom:10px;
-}
-
-/* INFO BOX */
-.info{
-  background: rgba(255,255,255,0.3);
-  padding:10px;
-  border-radius:8px;
-  margin:8px 0;
-}
-
-/* BUTTON */
-button{
-  margin-top:10px;
-  padding:10px;
-  background:#2193b0;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-  width:100%;
-  font-size:15px;
-}
-
-button:hover{
-  background:#1b7f94;
-}
-
-/* HIDE */
-.hidden{
-  display:none;
-}
 </style>
 </head>
 
 <body>
 
-<h1>Local Help Platform</h1>
+<div class="header">UrbanTasker</div>
 
-<!-- HOME -->
-<div id="home">
-  <div class="container" id="list"></div>
+<div class="container">
+    <div class="card">
+
+        <div class="name" id="name"></div>
+        <div class="rating" id="rating"></div>
+
+        <div class="details">
+            <p><b>Service:</b> Electrician</p>
+            <p><b>Price:</b> <span id="price"></span></p>
+            <p><b>Description:</b> <span id="desc"></span></p>
+            <p><b>Experience:</b> 5 Years</p>
+            <p><b>Phone:</b> 9876543210</p>
+        </div>
+
+        <button class="btn" onclick="bookNow()">Book Now</button>
+
+    </div>
 </div>
-
-<!-- DETAILS -->
-<div id="details" class="hidden"></div>
 
 <script>
 
-// ✅ DATA
-var providers = [
-  {
-    id:1,
-    name:"Ravi Kumar",
-    rating:4.5,
-    price:300,
-    phone:"9876543210",
-    exp:"5 years",
-    img:"https://i.pravatar.cc/100?img=1"
-  },
-  {
-    id:2,
-    name:"Aman Singh",
-    rating:4.2,
-    price:250,
-    phone:"9123456780",
-    exp:"3 years",
-    img:"https://i.pravatar.cc/100?img=2"
-  },
-  {
-    id:3,
-    name:"Suresh",
-    rating:4.6,
-    price:350,
-    phone:"9999999999",
-    exp:"6 years",
-    img:"https://i.pravatar.cc/100?img=3"
-  }
-];
+let params = new URLSearchParams(window.location.search);
 
-// 🔹 SHOW HOME
-function showHome(){
-  document.getElementById("home").classList.remove("hidden");
-  document.getElementById("details").classList.add("hidden");
+document.getElementById("name").innerText = params.get("name");
+document.getElementById("rating").innerText = "⭐ " + params.get("rating");
+document.getElementById("price").innerText = "₹" + params.get("price") + "/hr";
+document.getElementById("desc").innerText = params.get("desc");
+
+function bookNow(){
+    alert("Booking Confirmed ✅");
 }
-
-// 🔹 SHOW DETAILS
-function showDetails(id){
-
-  var person = providers.find(function(p){
-    return p.id == id;
-  });
-
-  var box = document.getElementById("details");
-
-  if(person){
-    box.innerHTML =
-      "<div class='details'>" +
-
-      "<img src='"+person.img+"' class='profile-img'>" +
-      "<h2>"+person.name+"</h2>" +
-
-      "<div class='info'>⭐ Rating: "+person.rating+"</div>" +
-      "<div class='info'>💰 Price: ₹"+person.price+" per hour</div>" +
-      "<div class='info'>📞 Phone: "+person.phone+"</div>" +
-      "<div class='info'>🧰 Experience: "+person.exp+"</div>" +
-
-      "<button onclick='book()'>Book Now</button>" +
-      "<button onclick='showHome()'>⬅ Back</button>" +
-
-      "</div>";
-  }
-  else{
-    box.innerHTML = "<h2>❌ No Data Found</h2>";
-  }
-
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("details").classList.remove("hidden");
-}
-
-// 🔹 BOOK
-function book(){
-  alert("✅ Booking Confirmed!");
-}
-
-// 🔹 LOAD HOME LIST (FULL DETAILS SHOW)
-var list = document.getElementById("list");
-
-providers.forEach(function(p){
-  list.innerHTML +=
-    "<div class='card' onclick='showDetails("+p.id+")'>" +
-
-    "<img src='"+p.img+"'>" +
-    "<h3>"+p.name+"</h3>" +
-
-    "<p> Rating: "+p.rating+"</p>" +
-    "<p>Price: ₹"+p.price+"/hr</p>" +
-    "<p>📞 "+p.phone+"</p>" +
-    "<p>🧰 "+p.exp+"</p>" +
-
-    "</div>";
-});
 
 </script>
 
