@@ -1,34 +1,61 @@
 <script>
 
 let params = new URLSearchParams(window.location.search);
+
 let name = params.get("name");
+let service = params.get("service"); // 👈 important
 
 document.getElementById("name").innerText = name;
 
-// ✅ DIRECT DESCRIPTION + PHONE (NO null issue)
-
+// VARIABLES
 let desc = "";
 let phone = "";
 
-// DIFFERENT DATA
-if(name === "PowerFix Electricals Ltd"){
-    desc = "Complete electrical work with expert technicians. Fast and reliable service for homes and offices.";
-    phone = "9123456780";
+// 🔥 ELECTRICIAN DATA
+if(service === "electrician"){
+
+    if(name === "PowerFix Electricals Ltd"){
+        desc = "Complete electrical work with expert technicians. Fast and reliable service.";
+        phone = "9123456780";
+    }
+    else if(name === "Amit Sharma"){
+        desc = "Wiring and switch repair specialist. Affordable and quick service.";
+        phone = "9876543210";
+    }
+    else if(name === "Rahul Verma"){
+        desc = "Fan and light installation expert. Experienced and trusted.";
+        phone = "9012345678";
+    }
+    else if(name === "Faizan Khan"){
+        desc = "Maintenance and repair work. Skilled technician.";
+        phone = "8899001122";
+    }
 }
-else if(name === "Amit Sharma"){
-    desc = "Specialist in wiring and switch repair. Quick service with affordable pricing.";
-    phone = "9876543210";
+
+// 🔥 PLUMBER DATA
+else if(service === "plumber"){
+
+    if(name === "AquaFix Services Pvt Ltd"){
+        desc = "Complete plumbing solutions including pipe repair and installation.";
+        phone = "9111222233";
+    }
+    else if(name === "Ramesh Kumar"){
+        desc = "Leak repair and pipe fitting expert. Fast and reliable service.";
+        phone = "9222333444";
+    }
+    else if(name === "Suresh Yadav"){
+        desc = "Bathroom fittings specialist. Experienced plumber.";
+        phone = "9333444555";
+    }
+    else if(name === "Imran Ali"){
+        desc = "Tap and pipe repair expert. Quick service available.";
+        phone = "9444555666";
+    }
 }
-else if(name === "Rahul Verma"){
-    desc = "Fan and light installation expert. Experienced and trusted professional.";
-    phone = "9012345678";
-}
-else if(name === "Faizan Khan"){
-    desc = "Maintenance and repair work. Skilled technician with fast response time.";
-    phone = "8899001122";
-}
+
+// DEFAULT (safety)
 else{
-    desc = "Professional electrician service available.";
+    desc = "Professional service provider.";
     phone = "9000000000";
 }
 
