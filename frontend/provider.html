@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-
 body{
     margin:0;
     font-family: Arial;
@@ -41,11 +40,6 @@ body{
     font-weight:bold;
 }
 
-.rating{
-    color:orange;
-    margin:5px 0;
-}
-
 .details p{
     margin:8px 0;
 }
@@ -60,7 +54,6 @@ body{
     margin-top:20px;
     cursor:pointer;
 }
-
 </style>
 </head>
 
@@ -72,14 +65,13 @@ body{
     <div class="card">
 
         <div class="name" id="name"></div>
-        <div class="rating" id="rating"></div>
 
         <div class="details">
             <p><b>Service:</b> Electrician</p>
-            <p><b>Price:</b> <span id="price"></span></p>
+            <p><b>Price:</b> ₹<span id="price"></span></p>
             <p><b>Description:</b> <span id="desc"></span></p>
+            <p><b>Phone:</b> <span id="phone"></span></p>
             <p><b>Experience:</b> 5 Years</p>
-            <p><b>Phone:</b> 9876543210</p>
         </div>
 
         <button class="btn" onclick="bookNow()">Book Now</button>
@@ -88,18 +80,16 @@ body{
 </div>
 
 <script>
-
 let params = new URLSearchParams(window.location.search);
 
 document.getElementById("name").innerText = params.get("name");
-document.getElementById("rating").innerText = "⭐ " + params.get("rating");
-document.getElementById("price").innerText = "₹" + params.get("price") + "/hr";
+document.getElementById("price").innerText = params.get("price");
 document.getElementById("desc").innerText = params.get("desc");
+document.getElementById("phone").innerText = params.get("phone");
 
 function bookNow(){
     alert("Booking Confirmed ✅");
 }
-
 </script>
 
 </body>
