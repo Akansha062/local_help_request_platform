@@ -1,175 +1,223 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UrbanTasker - Flexbox Layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanTasker - Premium Services</title>
+    <style>
+        :root {
+            --primary-color: #004d40;
+            --accent-color: #ffcc00;
+            --bg-light: #f8f9fa;
+        }
 
-<style>
-/* --- BASE STYLES --- */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-}
+        body {
+            margin: 0;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background-color: var(--bg-light);
+            color: #333;
+        }
 
-/* --- HERO & SEARCH --- */
-.hero {
-    text-align: center;
-    padding: 50px 20px;
-    background: #004d40;
-    color: white;
-}
-.hero h1 { margin: 5px; }
-.second { color: #ffcc00; }
+        /* --- LOGO & HEADER --- */
+        .header {
+            padding: 20px 5%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
 
-.search-box {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-.search-box input {
-    padding: 12px;
-    width: 300px;
-    border-radius: 5px 0 0 5px;
-    border: none;
-}
-.search-box button {
-    padding: 12px 20px;
-    background: #ffcc00;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-weight: bold;
-}
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0, 77, 64, 0.8), rgba(0, 77, 64, 0.8)), 
+                        url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
 
-/* --- MAIN CONTAINER --- */
-.container {
-    display: flex;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-}
+        .hero h1 { font-size: 42px; margin-bottom: 10px; }
+        .hero span { color: var(--accent-color); }
 
-/* SIDEBAR */
-.sidebar {
-    width: 200px;
-    margin-right: 30px;
-}
-.sidebar button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 8px;
-    border: 1px solid #ddd;
-    background: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
+        .search-container {
+            margin-top: 30px;
+            display: inline-flex;
+            background: white;
+            padding: 8px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
 
-/* --- FLEXBOX SERVICES SECTION --- */
-.content { flex: 1; }
+        .search-container input {
+            border: none;
+            padding: 15px 25px;
+            width: 300px;
+            border-radius: 50px;
+            outline: none;
+            font-size: 16px;
+        }
 
-.services-flex-container {
-    display: flex;       /* Flexbox Start */
-    flex-wrap: wrap;     /* Items niche shift honge agar jagah kam hogi */
-    gap: 20px;           /* Cards ke beech ka gap */
-}
+        .search-container button {
+            background: var(--accent-color);
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.card {
-    flex: 0 1 calc(33.33% - 20px); /* Ek line mein 3 cards (gap minus karke) */
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: 0.3s;
-}
+        .search-container button:hover { background: #e6b800; }
 
-/* Mobile par 1 ya 2 card dikhane ke liye */
-@media(max-width: 900px) {
-    .card { flex: 0 1 calc(50% - 20px); }
-}
-@media(max-width: 600px) {
-    .card { flex: 0 1 100%; }
-    .container { flex-direction: column; }
-    .sidebar { width: 100%; margin-bottom: 20px; }
-}
+        /* --- MAIN CONTENT --- */
+        .main-wrapper {
+            display: flex;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            gap: 30px;
+        }
 
-.card:hover {
-    transform: translateY(-5px);
-}
+        /* SIDEBAR */
+        .sidebar { width: 220px; }
+        .sidebar button {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: none;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .sidebar button:hover { background: var(--primary-color); color: white; }
 
-.card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
+        /* --- FLEXBOX GRID --- */
+        .services-section { flex: 1; }
+        .services-section h2 { margin-bottom: 25px; font-weight: 700; color: #222; }
 
-.card-text {
-    padding: 15px;
-    text-align: center;
-}
+        .flex-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
 
-.card-text h4 { margin: 0; color: #004d40; }
-.card-text p { margin: 5px 0 0; font-size: 14px; color: #777; }
+        .eye-card {
+            flex: 0 1 calc(33.33% - 17px); /* 3 Cards per row */
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 1px solid #f0f0f0;
+        }
 
-</style>
+        .eye-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .image-box {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .eye-card:hover img { transform: scale(1.1); }
+
+        .card-content { padding: 20px 15px; }
+        .card-content h3 { margin: 0; font-size: 20px; color: #333; }
+        .card-content p { color: #d32f2f; font-weight: 700; margin: 10px 0 0; font-size: 15px; }
+
+        /* Responsive */
+        @media(max-width: 992px) { .eye-card { flex: 0 1 calc(50% - 13px); } }
+        @media(max-width: 768px) {
+            .main-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .eye-card { flex: 0 1 100%; }
+            .hero h1 { font-size: 30px; }
+        }
+    </style>
 </head>
 <body>
 
+<div class="header">UrbanTasker</div>
+
 <div class="hero">
-    <h1>Book Trusted Help</h1>
-    <h1 class="second">For Your Daily Needs</h1>
-    <div class="search-box">
-        <input type="text" placeholder="Search services...">
+    <h1>Plan Your <span>Home Services</span> Easily</h1>
+    <p>Professional help for every daily need</p>
+    <div class="search-container">
+        <input type="text" placeholder="What do you need help with?">
         <button>Search</button>
     </div>
 </div>
 
-<div class="container">
+<div class="main-wrapper">
     <div class="sidebar">
-        <button>Home</button>
-        <button>Requests</button>
-        <button>Settings</button>
+        <button>Dashboard</button>
+        <button>Active Requests</button>
+        <button>Payment History</button>
+        <button style="background: #ffebee; color: #c62828;">Logout</button>
     </div>
 
-    <div class="content">
-        <h2>Popular Services</h2>
+    <div class="services-section">
+        <h2>Popular Projects</h2>
         
-        <div class="services-flex-container">
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952" alt="Electrician">
-                <div class="card-text">
-                    <h4>Electrician</h4>
-                    <p>Starts at $49</p>
+        <div class="flex-grid">
+            <div class="eye-card">
+                <div class="image-box">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=500" alt="Electrician">
+                </div>
+                <div class="card-content">
+                    <h3>Electrician</h3>
+                    <p>Starts at ₹499</p>
                 </div>
             </div>
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1600566752227-8f4a9d4c2c6e" alt="Plumber">
-                <div class="card-text">
-                    <h4>Plumber</h4>
-                    <p>Starts at $74</p>
+            <div class="eye-card">
+                <div class="image-box">
+                    <img src="https://images.unsplash.com/photo-1581244276894-0f79998188bc?auto=format&fit=crop&w=500" alt="Plumber">
+                </div>
+                <div class="card-content">
+                    <h3>Plumber Repairs</h3>
+                    <p>Starts at ₹399</p>
                 </div>
             </div>
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a" alt="Cleaning">
-                <div class="card-text">
-                    <h4>Cleaning</h4>
-                    <p>Starts at $45</p>
+            <div class="eye-card">
+                <div class="image-box">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=500" alt="Cleaning">
+                </div>
+                <div class="card-content">
+                    <h3>Home Cleaning</h3>
+                    <p>Starts at ₹599</p>
                 </div>
             </div>
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88" alt="Carpenter">
-                <div class="card-text">
-                    <h4>Carpenter</h4>
-                    <p>Starts at $60</p>
+            <div class="eye-card">
+                <div class="image-box">
+                    <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=500" alt="Carpenter">
+                </div>
+                <div class="card-content">
+                    <h3>Furniture Assembly</h3>
+                    <p>Starts at ₹449</p>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
